@@ -1,0 +1,106 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="{% static 'css/signup_style.css' %}" />
+    <title>Sign Up - UniCertify</title>
+  </head>
+  <body>
+    <main>
+      <div class="container">
+        <div class="logo">
+          <img src="../static/icons/logo.png" alt="UniCertify Logo" />
+        </div>
+
+        <h1>Create Account</h1>
+        <p class="subtitle">
+          Join UniCertify to access your digital certificates
+        </p>
+
+        <form id="signupForm" method="post">
+          {% csrf_token %} 
+          {% if messages %}
+          <div class="messages">
+            {% for message in messages %}
+            <p class="message {{ message.tags }}">{{ message }}</p>
+            {% endfor %}
+          </div>
+          {% endif %}
+
+          <div class="form-group">
+            <label for="role">Sign up as:</label>
+            <select id="role" name="role" required>
+              <option value="">Select your role</option>
+              <option value="student">Student</option>
+              <option value="admin">Admin</option>
+            </select>
+          </div>
+
+          <div id="formFields" class="hidden">
+            <div class="form-group">
+              <label for="fname">First Name</label>
+              <input type="text" id="name" name="fname" required />
+            </div>
+
+            <div class="form-group">
+              <label for="lname">Last Name</label>
+              <input type="text" id="name" name="lname" required />
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" required />
+            </div>
+
+            <div class="form-group">
+              <label for="userId" id="userIdLabel">Student ID</label>
+              <input type="text" id="userId" name="userId" required />
+            </div>
+
+            <div class="form-group" id="departmentGroup">
+              <label for="department">Department</label>
+              <select id="department" name="department">
+                <option value="">Select Department</option>
+                <option value="computer-science">Computer Science</option>
+                <option value="it">Information Technology</option>
+                <option value="electrical">Electrical Engineering</option>
+                <option value="mechanical">Mechanical Engineering</option>
+                <option value="civil">Civil Engineering</option>
+                <option value="other">Other</option>
+              </select>
+            </div>
+
+            <div class="form-row">
+              <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required />
+              </div>
+              <div class="form-group">
+                <label for="confirmPassword">Confirm Password</label>
+                <input
+                  type="password"
+                  id="confirmPassword"
+                  name="confirmPassword"
+                  required
+                />
+              </div>
+            </div>
+
+            <button type="submit" class="submit-btn">Create Account</button>
+          </div>
+        </form>
+        
+        <button type="button" class="back-btn" onclick="location.href='/'">
+          ← Back to Home
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p>© 2025 UniCertify</p>
+    </footer>
+    <script src="{% static 'js/signup.js' %}"></script>
+  </body>
+</html>

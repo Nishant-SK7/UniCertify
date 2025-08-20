@@ -1,0 +1,139 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Dashboard - UniCertify</title>
+    <link rel="stylesheet" href="{% static 'css/admin_dashboard.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+          <div class="header-left">
+            <div class="logo">
+              <img src="{% static 'icons/logo.png' %}" alt="UniCertify Logo">
+            </div>
+            <div class="user-info">
+              <span class="user-name">Admin Username</span>
+              <span class="user-id">Admin Id</span>
+            </div>
+          </div>
+          <h1 class="dashboard-title">Admin Dashboard</h1>
+          <div class="header-right">
+            <button class="logout-btn" onclick="location.href='/'">
+              Logout
+            </button>
+          </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="dashboard-main">
+          <!-- Left Panel -->
+          <div class="left-panel">
+            <div class="info-section">
+              <h3>📄 Document Requests</h3>
+              <div class="request-list">
+                <div class="request-item">
+                  <div class="request-info">
+                    <h4>Bonafide Certificate - Student A</h4>
+                    <p>Requested: Aug 15, 2025</p>
+                  </div>
+                  <img class="upload img-btn" src="{% static 'icons/upload.svg' %}" alt="upload" onclick="openModal()">
+                </div>
+                <div class="request-item">
+                  <div class="request-info">
+                    <h4>Transcript - Student B</h4>
+                    <p>Requested: Aug 14, 2025</p>
+                  </div>
+                  <img class="upload img-btn" src="{% static 'icons/upload.svg' %}" alt="upload" onclick="openModal()">
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h3>✅ Verification Requests</h3>
+              <div class="request-list">
+                <div class="request-item">
+                  <div class="request-info">
+                    <h4>Certificate ID: #UC2025001</h4>
+                    <p>Requested: Aug 13, 2025</p>
+                  </div>
+                  <img class="verify" src="{% static 'icons/verify.svg' %}" alt="verify">
+                </div>
+                <div class="request-item">
+                  <div class="request-info">
+                    <h4>Certificate ID: #UC2025002</h4>
+                    <p>Requested: Aug 12, 2025</p>
+                  </div>
+                  <img class="verify" src="{% static 'icons/verify.svg' %}" alt="verify">
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Panel -->
+          <div class="right-panel">
+            <div class="info-section">
+              <h3>📂 Document History</h3>
+              <div class="issued-list">
+                <div class="issued-item">
+                  <div class="issued-info">
+                    <h4>Bonafide - Student C</h4>
+                    <p>Issued: Aug 10, 2025</p>
+                  </div>
+                </div>
+                <div class="issued-item">
+                  <div class="issued-info">
+                    <h4>Transcript - Student D</h4>
+                    <p>Issued: Aug 08, 2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="info-section">
+              <h3>🔍 Verification History</h3>
+              <div class="issued-list">
+                <div class="issued-item">
+                  <div class="issued-info">
+                    <h4>Certificate ID: #UC2024005</h4>
+                    <p>Verified: Aug 05, 2025</p>
+                  </div>
+                </div>
+                <div class="issued-item">
+                  <div class="issued-info">
+                    <h4>Certificate ID: #UC2024003</h4>
+                    <p>Verified: Aug 02, 2025</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+    <!-- Upload Modal -->
+<div id="uploadModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeModal()">&times;</span>
+    <h2>Upload Certificate</h2>
+    
+    <form action="/certs/upload/" method="post" enctype="multipart/form-data">
+      {% csrf_token %}
+      <label for="student">Student Name:</label>
+      <input type="text" id="student" name="student" required>
+
+      <label for="file">Certificate File (PDF):</label>
+      <input type="file" id="file" name="file" accept="application/pdf" required>
+
+      <button type="submit" class="submit-btn">Upload</button>
+    </form>
+  </div>
+</div>
+<script src="{% static 'js/upload.js' %}"></script>
+    <footer>© 2025 UniCertify - Admin Panel</footer>
+  </body>
+</html>

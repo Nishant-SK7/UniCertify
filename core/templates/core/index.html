@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UniCertify - Digital Certificate Portal</title>
+    <link rel="stylesheet" href="{% static 'css/index_style.css' %}">
+  </head>
+  <body>
+    <div class="container">
+      <header class="header">
+        <a href="/signup/" class="signup-btn">Sign Up</a>
+      </header>
+
+      <main class="main-content">
+        <div class="logo-container">
+          <img src="../static/icons/logo.png" alt="UniCertify Logo" class="logo" >
+        </div>
+
+        <h1>Digital Certificate Portal</h1>
+        <p class="subtitle">Request and download your certificates online.</p>
+
+        <div class="btn-group">
+          <a href="/student_login/" class="btn student-btn">Student Login</a>
+          <a href="/admin_login/" class="btn admin-btn">Admin Login</a>
+        </div>
+
+        <div class="signup-info">
+          <span>New to UniCertify?</span>
+          <a href="/signup/">Sign Up</a>
+        </div>
+
+        <section class="features">
+          <div class="feature">
+            <div class="icon">📋</div>
+            <h2>Request Certificates</h2>
+            <p>Submit forms online to request bonafide certificates, transcripts, and more.</p>
+          </div>
+          <div class="feature">
+            <div class="icon">✅</div>
+            <h2>Verify Certificates</h2>
+            <p>Easily verify issued certificates using the certificate ID.</p>
+          </div>
+        </section>
+      </main>
+
+      <footer class="footer">
+        <p>© 2025 UniCertify</p>
+      </footer>
+    </div>
+  </body>
+</html>
