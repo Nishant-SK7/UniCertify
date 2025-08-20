@@ -1,0 +1,137 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Student Dashboard - UniCertify</title>
+    <link rel="stylesheet" href="{% static 'css/student_dashboard.css' %}" />
+  </head>
+  <body>
+    <div class="container">
+    <div class="dashboard-container">
+      <!-- Header Section -->
+      <header class="dashboard-header">
+        <div class="header-left">
+          <div class="logo">
+            <img src="../static/icons/logo.png" alt="UniCertify Logo" />
+          </div>
+          <div class="user-info">
+            <span class="user-name">User Name</span>
+            <span class="user-id">Student Id</span>
+          </div>
+        </div>
+        <h1 class="dashboard-title">Student Dashboard</h1>
+        <div class="header-right">
+          <button class="logout-btn" onclick="location.href='/'">
+            Logout
+          </button>
+        </div>
+      </header>
+
+      <!-- Main Content -->
+      <main class="dashboard-main">
+        <!-- Left Panel - Actions -->
+        <div class="left-panel">
+          <div class="action-box" onclick="openRequestModal()">
+            <div class="action-icon">📄</div>
+            <h3>Request Document</h3>
+            <p>Request bonafide certificates, transcripts, and more</p>
+          </div>
+
+          <div class="action-box">
+            <div class="action-icon">✓</div>
+            <h3>Verify Document</h3>
+            <p>Verify documents using unique document ID</p>
+          </div>
+          <div class="action-box" onclick="">
+            <div class="action-icon">
+              <img src="../static/icons/history.svg" alt="" />
+            </div>
+            <h3>Document Request History</h3>
+            <p>Review previously made document requests</p>
+          </div>
+        </div>
+
+        <!-- Right Panel - Information -->
+        <div class="right-panel">
+          <div class="info-section">
+            <h3>Document Requests</h3>
+            <div class="request-list">
+              <div class="request-item">
+                <div class="request-info">
+                  <h4>Bonafide Certificate</h4>
+                  <p>Requested: March 15, 2024</p>
+                </div>
+              </div>
+              <div class="request-item">
+                <div class="request-info">
+                  <h4>Academic Transcript</h4>
+                  <p>Requested: March 10, 2024</p>
+                </div>
+              </div>
+              <div class="request-item">
+                <div class="request-info">
+                  <h4>Character Certificate</h4>
+                  <p>Requested: March 5, 2024</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="info-section">
+            <button class="view-certificates-btn" onclick="">
+              <span class="btn-icon">📋</span>
+              View All Issued Documents
+            </button>
+            <div class="issued-list">
+              <div class="issued-item">
+                <div class="issued-info">
+                  <h4><a href="#">Document 1</a></h4>
+                </div>
+              </div>
+              <div class="issued-item">
+                <div class="issued-info">
+                  <h4><a href="#">Document 2</a></h4>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+    </div>
+
+    <!-- Certificate Request Modal -->
+<div id="requestModal" class="modal">
+  <div class="modal-content">
+    <span class="close-btn" onclick="closeRequestModal()">&times;</span>
+    <h2>Request Certificate</h2>
+    <form method="post" action="/certificates/request/">
+      {% csrf_token %}
+      <label for="name">Name:</label>
+      <input type="text" id="name" name="name" required>
+
+      <label for="class">Class:</label>
+      <input type="text" id="class" name="class" required>
+
+      <label for="student_id">Student ID:</label>
+      <input type="text" id="student_id" name="student_id" required>
+
+      <label for="document_type">Document Type:</label>
+      <select class="document_type" id="document_type" name="document_type" required>
+        <option value="bonafide">Bonafide Certificate</option>
+        <option value="transcript">Academic Transcript</option>
+        <option value="character">Character Certificate</option>
+        <option value="fee_receipt">Fee Receipt</option>
+      </select>
+      <button type="submit" class="submit-btn">Submit Request</button>
+    </form>
+  </div>
+</div>
+
+<script src="{% static 'js/request.js' %}"></script>
+
+<footer>© 2025 UniCertify</footer>
+  </body>
+</html>
